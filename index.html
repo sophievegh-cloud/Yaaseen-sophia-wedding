@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yaaseen & Sophia - Wedding Invitation</title>
+  <title>Yaaseen & Sophia · Wedding Invitation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
       --lilac: #c8a2ff;
-      --deep-lilac: #8a63c6;
-      --soft-lilac: #f4ecff;
+      --deep-lilac: #7c5ac3;
+      --soft-lilac: #f7f2ff;
       --white: #ffffff;
       --gold: #d6b36a;
       --text-dark: #2b2140;
@@ -22,82 +22,83 @@
 
     body {
       font-family: "Georgia", "Times New Roman", serif;
-      background: radial-gradient(circle at top, #fdfbff 0%, #f3ebff 45%, #e1cffc 100%);
-      color: var(--text-dark);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 18px;
+      color: var(--text-dark);
+      background: #f7f2ff;
+      background-image:
+        linear-gradient(to bottom, rgba(247,242,255,0.95), rgba(233,216,255,0.9)),
+        url("white-roses-bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
-    .app-shell {
+    .app {
       position: relative;
       max-width: 480px;
       width: 100%;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.94);
       border-radius: 24px;
-      box-shadow: 0 18px 55px rgba(62, 39, 98, 0.28);
+      box-shadow: 0 18px 55px rgba(85, 61, 135, 0.4);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
     }
 
-    /* soft floral overlay */
-    .app-shell::before {
+    .app::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.7) 0, transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.65) 0, transparent 55%),
-        radial-gradient(circle at 10% 90%, rgba(255,255,255,0.7) 0, transparent 60%);
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.8) 0, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.9) 0, transparent 55%),
+        radial-gradient(circle at 20% 90%, rgba(255,255,255,0.7) 0, transparent 60%);
       pointer-events: none;
-      opacity: 0.9;
     }
 
     header {
       position: relative;
       z-index: 2;
-      padding: 12px 18px;
+      padding: 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(to right, var(--soft-lilac), #ffffff);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      background: linear-gradient(to right, #f8f3ff, #ffffff);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
     }
 
     .brand {
       font-family: "Cinzel", "Georgia", serif;
-      font-size: 14px;
-      letter-spacing: 0.15em;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--deep-lilac);
+      white-space: nowrap;
     }
 
     .music-toggle {
       border-radius: 999px;
-      border: 1px solid rgba(138, 99, 198, 0.3);
-      padding: 6px 12px;
+      border: 1px solid rgba(124, 90, 195, 0.35);
+      padding: 7px 14px;
       font-size: 11px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.96);
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .music-toggle span {
-      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--deep-lilac);
     }
 
     main {
       position: relative;
       z-index: 2;
-      padding: 20px 18px 22px;
+      padding: 18px 14px 20px;
     }
 
     .screen {
@@ -113,13 +114,14 @@
       transform: translateY(0);
     }
 
-    /* ENVELOPE SCREEN */
+    /* ENVELOPE INTRO */
+
     .envelope-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 18px;
-      padding: 25px 8px 10px;
+      padding: 30px 6px 10px;
       text-align: center;
     }
 
@@ -133,9 +135,9 @@
     .envelope-base {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #f7f0ff, #e0c8ff);
-      border-radius: 16px;
-      box-shadow: 0 14px 30px rgba(77, 47, 122, 0.3);
+      background: linear-gradient(135deg, #f7f0ff, #e1c8ff);
+      border-radius: 18px;
+      box-shadow: 0 15px 32px rgba(89, 60, 141, 0.45);
       overflow: hidden;
     }
 
@@ -145,7 +147,7 @@
       left: 0;
       right: 0;
       height: 60%;
-      background: linear-gradient(135deg, #d2b2ff, #b186ff);
+      background: linear-gradient(135deg, #d4b2ff, #b485ff);
       transform-origin: top center;
       border-bottom-left-radius: 90px;
       border-bottom-right-radius: 90px;
@@ -159,10 +161,10 @@
 
     .envelope-inner-card {
       position: absolute;
-      inset: 12px;
+      inset: 14px;
       background: #fdfbff;
-      border-radius: 12px;
-      border: 1px solid rgba(214, 179, 106, 0.5);
+      border-radius: 14px;
+      border: 1px solid rgba(214, 179, 106, 0.55);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -177,17 +179,16 @@
       color: var(--deep-lilac);
     }
 
-    /* ribbon */
     .ribbon {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 190px;
-      height: 28px;
-      background: linear-gradient(90deg, #b689ff, #d7c1ff);
+      height: 30px;
+      background: linear-gradient(90deg, #b788ff, #dcc4ff);
       border-radius: 999px;
-      box-shadow: 0 4px 10px rgba(65, 37, 120, 0.4);
+      box-shadow: 0 4px 12px rgba(72, 45, 118, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -200,22 +201,22 @@
       content: "";
       position: absolute;
       width: 70px;
-      height: 26px;
+      height: 28px;
       background: inherit;
       top: 1px;
       transform-origin: center;
-      transition: transform 0.6s ease;
+      transition: transform 0.6s ease, opacity 0.6s ease;
       opacity: 0.92;
     }
 
     .ribbon::before {
       left: -45px;
-      transform: rotate(-8deg);
+      transform: rotate(-9deg);
     }
 
     .ribbon::after {
       right: -45px;
-      transform: rotate(8deg);
+      transform: rotate(9deg);
     }
 
     .envelope.open .ribbon::before {
@@ -230,7 +231,7 @@
 
     .ribbon-text {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #fdfbff;
       position: relative;
@@ -239,58 +240,59 @@
 
     .envelope-caption {
       font-size: 13px;
-      color: #5b4a7a;
+      color: #5c4a7a;
       line-height: 1.5;
     }
 
     .tiny-italian {
       font-size: 11px;
       font-style: italic;
-      color: #8c78b0;
+      color: #8d77b3;
       margin-top: 4px;
     }
 
-    /* GENERAL CARD CONTENT */
+    /* CARD LAYOUTS */
+
     .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 18px;
-      padding: 18px 16px 16px;
-      box-shadow: 0 12px 24px rgba(74, 46, 119, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 22px;
+      padding: 20px 16px 18px;
+      box-shadow: 0 16px 35px rgba(86, 61, 134, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.96);
       position: relative;
       overflow: hidden;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 110px;
-      height: 110px;
-      background: radial-gradient(circle, rgba(255,255,255,0.9) 0, transparent 70%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
+    .card::before,
     .card::after {
       content: "";
       position: absolute;
-      bottom: -40px;
-      left: -40px;
-      width: 130px;
-      height: 130px;
-      background: radial-gradient(circle, rgba(255,255,255,0.95) 0, transparent 70%);
-      opacity: 0.9;
+      border-radius: 999px;
       pointer-events: none;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0, transparent 70%);
+    }
+
+    .card::before {
+      width: 140px;
+      height: 140px;
+      top: -45px;
+      right: -40px;
+    }
+
+    .card::after {
+      width: 160px;
+      height: 160px;
+      bottom: -65px;
+      left: -60px;
     }
 
     .eyebrow {
       text-transform: uppercase;
       letter-spacing: 0.22em;
       font-size: 10px;
-      color: #9882c6;
+      color: #987fcb;
       margin-bottom: 6px;
+      text-align: center;
     }
 
     .names {
@@ -300,19 +302,20 @@
       color: var(--deep-lilac);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .ampersand {
       font-size: 22px;
       color: var(--gold);
+      padding: 0 2px;
     }
 
     .tagline {
       text-align: center;
       font-size: 13px;
-      color: #6c5c8f;
-      margin-bottom: 14px;
+      color: #6b5a8f;
+      margin-bottom: 12px;
     }
 
     .divider {
@@ -325,8 +328,8 @@
 
     .divider-line {
       height: 1px;
-      width: 45px;
-      background: linear-gradient(to right, transparent, #d5c1ff, transparent);
+      width: 52px;
+      background: linear-gradient(to right, transparent, #ddc7ff, transparent);
     }
 
     .divider-icon {
@@ -338,7 +341,7 @@
       font-size: 13px;
       text-align: center;
       line-height: 1.6;
-      color: #4a3c6e;
+      color: #4a3b6e;
       margin-bottom: 14px;
     }
 
@@ -356,17 +359,19 @@
 
     .pill {
       border-radius: 999px;
-      padding: 5px 12px;
+      padding: 5px 14px;
       font-size: 11px;
-      border: 1px solid rgba(138, 99, 198, 0.25);
-      background: rgba(244, 236, 255, 0.9);
-      color: #6a538f;
+      border: 1px solid rgba(135, 102, 201, 0.3);
+      background: rgba(248, 242, 255, 0.95);
+      color: #6a528f;
       text-transform: uppercase;
       letter-spacing: 0.12em;
+      white-space: nowrap;
     }
 
     .primary-actions {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       margin-top: 10px;
     }
@@ -388,19 +393,19 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--deep-lilac), var(--lilac));
       color: #fff;
-      box-shadow: 0 6px 18px rgba(74, 46, 119, 0.4);
+      box-shadow: 0 8px 20px rgba(87, 60, 143, 0.5);
     }
 
     .btn-secondary {
       background: #f8f3ff;
-      color: #5b4a7a;
-      border: 1px solid rgba(153, 119, 214, 0.35);
+      color: #5c4a7a;
+      border: 1px solid rgba(153, 119, 214, 0.45);
     }
 
     .btn-small {
       flex: unset;
-      font-size: 11px;
       padding: 7px 11px;
+      font-size: 11px;
       margin-top: 10px;
     }
 
@@ -409,28 +414,29 @@
       box-shadow: none;
     }
 
-    /* DETAILS / ITINERARY */
+    /* ITINERARY */
+
     .section-title {
       font-family: "Cinzel", "Georgia", serif;
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--deep-lilac);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-subtitle {
       font-size: 12px;
       text-align: center;
       color: #7d6ca5;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .info-list {
       list-style: none;
       font-size: 13px;
-      color: #4a3c6e;
+      color: #4b3d72;
       margin-bottom: 12px;
     }
 
@@ -452,7 +458,21 @@
       text-decoration: underline;
     }
 
-    /* RSVP & FORM ELEMENTS */
+    .note {
+      font-size: 11px;
+      color: #8e7bb7;
+      margin-top: 6px;
+    }
+
+    .subtle {
+      font-size: 11px;
+      color: #a392cf;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* FORMS */
+
     form {
       display: flex;
       flex-direction: column;
@@ -462,8 +482,8 @@
 
     label {
       font-size: 12px;
-      color: #5a4c7c;
-      margin-bottom: 2px;
+      color: #594a7d;
+      margin-bottom: 3px;
     }
 
     input[type="text"],
@@ -472,7 +492,7 @@
     textarea {
       width: 100%;
       border-radius: 10px;
-      border: 1px solid rgba(138, 99, 198, 0.35);
+      border: 1px solid rgba(137, 101, 199, 0.35);
       padding: 8px 10px;
       font-size: 13px;
       font-family: inherit;
@@ -481,12 +501,13 @@
     }
 
     textarea {
-      min-height: 60px;
       resize: vertical;
+      min-height: 70px;
     }
 
     .radio-group {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       font-size: 12px;
       color: #4a3c6e;
@@ -499,20 +520,6 @@
       gap: 4px;
     }
 
-    .note {
-      font-size: 11px;
-      color: #8b7bb3;
-      margin-top: 4px;
-    }
-
-    .subtle {
-      font-size: 11px;
-      color: #9c8ccc;
-      margin-top: 6px;
-      text-align: center;
-    }
-
-    /* MENU GRID */
     .menu-group {
       margin-top: 8px;
     }
@@ -523,12 +530,12 @@
       color: var(--deep-lilac);
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .menu-description {
       font-size: 11px;
-      color: #7c699f;
+      color: #7e6aab;
       margin-bottom: 6px;
     }
 
@@ -555,31 +562,63 @@
       margin: 0 4px;
     }
 
+    /* GIFTS / HONEYMOON */
+
+    .gift-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #4b3d72;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .gift-heart {
+      font-size: 20px;
+      margin-top: 8px;
+      color: #d86a7a;
+      text-align: center;
+    }
+
+    .gift-link {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .gift-link a {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 13px;
+      background: linear-gradient(135deg, #f5b4d0, #c88df7);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(151, 94, 167, 0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     @media (max-width: 480px) {
-      main {
-        padding: 18px 12px 18px;
-      }
-      .names {
-        font-size: 22px;
-      }
+      main { padding: 16px 10px 18px; }
+      .names { font-size: 22px; }
     }
   </style>
 </head>
 <body>
-<div class="app-shell">
+<div class="app">
   <header>
     <div class="brand">Y &amp; S · Sorrento</div>
     <button class="music-toggle" id="musicToggle">
-      <span>Music</span> <span id="musicState">Off</span>
+      <span>Music</span><span id="musicState">Off</span>
     </button>
-    <!-- Add your own MP3 file in the audio tag below -->
     <audio id="bgMusic" loop>
-      <!-- Example: <source src="your-music-file.mp3" type="audio/mpeg" /> -->
+      <!-- Add your own MP3 here, for example:
+      <source src="your-song.mp3" type="audio/mpeg" />
+      -->
     </audio>
   </header>
 
   <main>
-    <!-- SCREEN 1: ENVELOPE -->
+    <!-- SCREEN: ENVELOPE -->
     <section id="screen-envelope" class="screen active">
       <div class="envelope-wrapper">
         <div class="envelope" id="envelope">
@@ -589,18 +628,19 @@
             <div class="monogram">Y &amp; S</div>
           </div>
           <div class="ribbon" id="ribbon">
-            <div class="ribbon-text">Click the ribbon to open</div>
+            <div class="ribbon-text">Open your invitation</div>
           </div>
         </div>
         <div class="envelope-caption">
-          You are warmly invited to<br />
-          celebrate the wedding of
-          <div class="tiny-italian">Apri il tuo invito · With love</div>
+          You are warmly invited to celebrate the wedding of
+          <div class="tiny-italian">
+            Apri il tuo invito · With love from Sorrento
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SCREEN 2: MAIN INVITE -->
+    <!-- SCREEN: MAIN INVITE -->
     <section id="screen-invite" class="screen">
       <div class="card">
         <div class="eyebrow">Wedding Invitation</div>
@@ -632,15 +672,20 @@
           <button class="btn btn-primary" onclick="showScreen('screen-rsvp')">
             RSVP &amp; Menu
           </button>
+          <button class="btn btn-secondary" onclick="showScreen('screen-gifts')">
+            Gifts &amp; Honeymoon
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- SCREEN 3: DETAILS / ITINERARY -->
+    <!-- SCREEN: ITINERARY -->
     <section id="screen-details" class="screen">
       <div class="card">
         <div class="section-title">Itinerary</div>
-        <div class="section-subtitle">An evening in lilac by the sea at Villa Antiche Mura</div>
+        <div class="section-subtitle">
+          An evening in lilac by the sea at Villa Antiche Mura
+        </div>
 
         <ul class="info-list">
           <li><span class="highlight">4:00 PM</span> · Ceremony overlooking the Bay of Naples</li>
@@ -653,90 +698,68 @@
           Dress code: Elegant summer formal. Shades of lilac and soft neutrals are warmly welcomed.
         </p>
 
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Villa+Antiche+Mura+Sorrento+Italy" target="_blank">
+        <a class="map-link"
+           href="https://www.google.com/maps/search/?api=1&query=Villa+Antiche+Mura+Sorrento+Italy"
+           target="_blank">
           Open Villa Antiche Mura in Maps
         </a>
 
-        <button class="btn btn-secondary btn-small" onclick="showScreen('screen-invite')">
-          ← Back to Invitation
-        </button>
-        <button class="btn btn-primary btn-small" onclick="showScreen('screen-rsvp')">
-          RSVP &amp; Menu →
-        </button>
+        <div class="primary-actions">
+          <button class="btn btn-secondary" onclick="showScreen('screen-invite')">
+            ← Back to Invitation
+          </button>
+          <button class="btn btn-primary" onclick="showScreen('screen-rsvp')">
+            RSVP &amp; Menu →
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- SCREEN 4: RSVP -->
+    <!-- SCREEN: RSVP / MENU -->
     <section id="screen-rsvp" class="screen">
       <div class="card">
-        <div class="section-title">RSVP</div>
-        <div class="section-subtitle">Please let us know if you will be joining us in Sorrento.</div>
+        <div class="section-title">RSVP &amp; Menu</div>
+        <div class="section-subtitle">
+          Kindly let us know if you can join us and share your menu preferences.
+        </div>
 
-        <!-- 
-          NOTE: For now this form is handled entirely on the front-end.
-          A developer can connect it to Google Forms by:
-          - Creating a Google Form with matching fields
-          - Replacing this form with the embed code from Google Forms
-        -->
         <form id="rsvpForm">
           <div>
-            <label for="guestName">Guest name(s)</label>
-            <input type="text" id="guestName" name="guestName" required />
+            <label for="guestName">Your Name(s)</label>
+            <input id="guestName" name="guestName" type="text" required />
           </div>
 
           <div>
-            <label>Will you be joining us?</label>
+            <label for="guestEmail">Email</label>
+            <input id="guestEmail" name="guestEmail" type="email" required />
+          </div>
+
+          <div>
+            <label>Attendance</label>
             <div class="radio-group">
               <label class="radio-option">
-                <input type="radio" name="attendance" value="yes" required />
-                Yes, with love I’ll be there
+                <input type="radio" name="attendance" value="Happily accepting" required />
+                Happily accepting
               </label>
               <label class="radio-option">
-                <input type="radio" name="attendance" value="no" />
-                Sadly I cannot attend
+                <input type="radio" name="attendance" value="Regretfully declining" />
+                Regretfully declining
               </label>
             </div>
           </div>
 
-          <p class="note">
-            If you are joining us, you’ll be able to select your meal and let us know about any allergies or preferences.
-          </p>
-
-          <div class="primary-actions">
-            <button type="button" class="btn btn-secondary" onclick="showScreen('screen-invite')">
-              ← Back
-            </button>
-            <button type="button" class="btn btn-primary" onclick="handleRsvpNext()">
-              Continue →
-            </button>
+          <div>
+            <label for="guestCount">Number of guests in your party</label>
+            <input id="guestCount" name="guestCount" type="text" placeholder="e.g. 2" />
           </div>
-        </form>
-
-        <p class="subtle">
-          Kindly reply at your earliest convenience so we may finalise our arrangements.
-        </p>
-      </div>
-    </section>
-
-    <!-- SCREEN 5: MENU SELECTION -->
-    <section id="screen-menu" class="screen">
-      <div class="card">
-        <div class="section-title">Menu Selection</div>
-        <div class="section-subtitle">
-          Please choose your preferred dishes for our reception dinner.
-        </div>
-
-        <form id="menuForm">
-          <!-- Hidden field to carry name from previous step -->
-          <input type="hidden" id="menuGuestName" name="guestName" />
 
           <div class="menu-group">
             <div class="menu-group-title">Starter</div>
             <div class="menu-description">
-              Please choose one:
+              Please select one starter per guest.
             </div>
-            <select name="starter" required>
-              <option value="">-- Select starter --</option>
+            <select id="starterChoice" name="starterChoice">
+              <option value="">Select starter</option>
               <option>Traditional Eggplant Parmigiana</option>
               <option>Trilogy of Bruschetta</option>
             </select>
@@ -744,9 +767,8 @@
 
           <div class="menu-group">
             <div class="menu-group-title">First Course</div>
-            <div class="menu-description">Please choose one:</div>
-            <select name="firstCourse" required>
-              <option value="">-- Select first course --</option>
+            <select id="firstChoice" name="firstChoice">
+              <option value="">Select first course</option>
               <option>Homemade Cannelloni</option>
               <option>Sorrentine Lemon Risotto</option>
             </select>
@@ -754,175 +776,148 @@
 
           <div class="menu-group">
             <div class="menu-group-title">Second Course</div>
-            <div class="menu-description">Please choose one:</div>
-            <select name="secondCourse" required>
-              <option value="">-- Select second course --</option>
-              <option>Roast Beef Italian Style</option>
+            <select id="secondChoice" name="secondChoice">
+              <option value="">Select second course</option>
+              <option>Roast Beef at Italian Style</option>
               <option>The Sorrentine Escalope (Chicken)</option>
             </select>
           </div>
 
           <div class="menu-group">
-            <div class="menu-group-title">Dessert</div>
-            <div class="menu-description">
-              Dessert will be lemon sorbet and wedding cake for all guests.
-            </div>
-          </div>
-
-          <div class="menu-group">
             <div class="menu-group-title">Allergies &amp; Preferences</div>
             <div class="menu-description">
-              Please let us know if you have any allergies, intolerances, or specific dietary preferences.
+              Dessert will be lemon sorbet &amp; wedding cake. Please let us know any allergies,
+              intolerances or special requests (vegetarian, vegan, halal, etc.).
             </div>
-            <textarea
-              name="allergies"
-              placeholder="e.g. nut allergy, gluten free, vegetarian, halal, etc."></textarea>
+            <textarea id="allergies" name="allergies"
+                      placeholder="Allergies, dietary needs or notes"></textarea>
           </div>
 
-          <div class="primary-actions">
-            <button type="button" class="btn btn-secondary" onclick="showScreen('screen-rsvp')">
-              ← Back
-            </button>
-            <button type="submit" class="btn btn-primary">
-              Submit RSVP
-            </button>
-          </div>
-
-          <p class="subtle">
-            You can contact us directly if your requirements are complex – we’ll do our very best to accommodate you.
-          </p>
+          <button type="submit" class="btn btn-primary">
+            Send RSVP via Email
+          </button>
         </form>
+
+        <p class="subtle">
+          Tapping “Send RSVP” will open an email draft with your answers ready to send to Sophia &amp; Yaaseen.
+        </p>
+
+        <div class="primary-actions">
+          <button class="btn btn-secondary" onclick="showScreen('screen-invite')">
+            ← Back to Invitation
+          </button>
+          <button class="btn btn-secondary" onclick="showScreen('screen-gifts')">
+            Gifts &amp; Honeymoon →
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- SCREEN 6: CONFIRMATION -->
-    <section id="screen-confirmation" class="screen">
+    <!-- SCREEN: GIFTS & HONEYMOON -->
+    <section id="screen-gifts" class="screen">
       <div class="card">
-        <div class="section-title">Thank You</div>
-        <div class="confirmation" id="confirmationMessage">
-          <!-- Filled dynamically -->
-        </div>
-        <div class="calendar-links">
-          Add to calendar:
-          <!-- You can replace these with real URLs from calendar invite services -->
-          <a href="#" onclick="return false;">Google</a> ·
-          <a href="#" onclick="return false;">Apple</a> ·
-          <a href="#" onclick="return false;">Outlook</a>
+        <div class="section-title">Gifts &amp; Honeymoon</div>
+        <div class="section-subtitle">
+          Your presence is the greatest gift.
         </div>
 
-        <button class="btn btn-secondary btn-small" onclick="showScreen('screen-invite')">
-          ← Back to Invitation
-        </button>
+        <p class="gift-text">
+          We’re so grateful to share our special day with you.
+          Your love and support mean more than any gift could.
+        </p>
+
+        <p class="gift-text">
+          If you’d like to contribute to our honeymoon, you’ll be helping us create our first
+          adventure as a married couple. Thank you from the bottom of our hearts!
+        </p>
+
+        <div class="gift-heart">♥️</div>
+
+        <div class="gift-link">
+          <a href="https://app.collectionpot.com/pot/3420402" target="_blank">
+            Open Our Honeymoon Collection Pot
+          </a>
+        </div>
+
+        <div class="primary-actions">
+          <button class="btn btn-secondary" onclick="showScreen('screen-invite')">
+            ← Back to Invitation
+          </button>
+          <button class="btn btn-secondary" onclick="showScreen('screen-rsvp')">
+            RSVP &amp; Menu
+          </button>
+        </div>
       </div>
     </section>
   </main>
 </div>
 
 <script>
-  const screens = document.querySelectorAll(".screen");
-
+  // Simple screen switching
   function showScreen(id) {
-    screens.forEach((s) => {
-      if (s.id === id) {
-        s.classList.add("active");
-      } else {
-        s.classList.remove("active");
-      }
-    });
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Envelope & ribbon logic
-  const envelope = document.getElementById("envelope");
-  const ribbon = document.getElementById("ribbon");
+  // Envelope open -> show main invite
+  const ribbon = document.getElementById('ribbon');
+  const envelope = document.getElementById('envelope');
 
-  ribbon.addEventListener("click", () => {
-    envelope.classList.add("open");
-    setTimeout(() => {
-      showScreen("screen-invite");
-    }, 750);
+  ribbon.addEventListener('click', () => {
+    envelope.classList.add('open');
+    setTimeout(() => showScreen('screen-invite'), 650);
   });
 
-  // RSVP navigation
-  function handleRsvpNext() {
-    const nameInput = document.getElementById("guestName");
-    const attendance = document.querySelector("input[name='attendance']:checked");
+  // Music toggle (you can add your own MP3 in the <audio> tag)
+  const musicToggle = document.getElementById('musicToggle');
+  const musicState = document.getElementById('musicState');
+  const bgMusic = document.getElementById('bgMusic');
+  let musicOn = false;
 
-    if (!nameInput.value.trim()) {
-      alert("Please enter your name.");
-      return;
-    }
-    if (!attendance) {
-      alert("Please let us know if you are joining us.");
-      return;
-    }
-
-    if (attendance.value === "yes") {
-      // Pass name into menu form
-      document.getElementById("menuGuestName").value = nameInput.value.trim();
-      showScreen("screen-menu");
-    } else {
-      // Not attending – show a simple confirmation
-      const message = `
-        <p>Dear <strong>${nameInput.value.trim()}</strong>,</p>
-        <p>Thank you for letting us know. We are sorry you won’t be able to join us in Sorrento, but we truly appreciate your reply and send our love.</p>
-        <p><strong>With love,</strong><br/>Yaaseen &amp; Sophia</p>
-      `;
-      document.getElementById("confirmationMessage").innerHTML = message;
-      showScreen("screen-confirmation");
-    }
-  }
-
-  // Menu form submission (currently just shows confirmation on-screen)
-  const menuForm = document.getElementById("menuForm");
-  menuForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(menuForm);
-    const name = formData.get("guestName") || "Guest";
-    const starter = formData.get("starter");
-    const firstCourse = formData.get("firstCourse");
-    const secondCourse = formData.get("secondCourse");
-    const allergies = formData.get("allergies") || "No specific allergies or preferences noted.";
-
-    const message = `
-      <p>Dear <strong>${name}</strong>,</p>
-      <p>Grazie mille for confirming your attendance and menu choices.</p>
-      <p><strong>Your selection:</strong><br/>
-      Starter: ${starter}<br/>
-      First course: ${firstCourse}<br/>
-      Second course: ${secondCourse}<br/>
-      Allergies/preferences: ${allergies}</p>
-      <p>We cannot wait to celebrate with you under the Sorrento sky on<br/>
-      <strong>Wednesday 27th May 2026, 4 PM – Midnight</strong> at <strong>Villa Antiche Mura</strong>.</p>
-      <p><strong>With love,</strong><br/>Yaaseen &amp; Sophia</p>
-    `;
-
-    document.getElementById("confirmationMessage").innerHTML = message;
-    showScreen("screen-confirmation");
-
-    // To connect to Google Forms:
-    // 1. Create a Google Form with matching fields
-    // 2. Use its "Responses" sheet for tracking
-    // 3. Replace this custom form and submit handler with the embed HTML from Google Forms
-  });
-
-  // Music toggle
-  const musicToggle = document.getElementById("musicToggle");
-  const musicState = document.getElementById("musicState");
-  const bgMusic = document.getElementById("bgMusic");
-
-  musicToggle.addEventListener("click", () => {
+  musicToggle.addEventListener('click', () => {
     if (!bgMusic.src) {
-      alert("Ask your developer to add your music file to the audio tag first.");
+      // No audio file provided yet
+      alert('You can add your own song by editing the audio tag in the code. 💜');
       return;
     }
-    if (bgMusic.paused) {
+    musicOn = !musicOn;
+    if (musicOn) {
       bgMusic.play();
-      musicState.textContent = "On";
+      musicState.textContent = 'On';
     } else {
       bgMusic.pause();
-      musicState.textContent = "Off";
+      musicState.textContent = 'Off';
     }
+  });
+
+  // RSVP form -> send via mailto
+  const rsvpForm = document.getElementById('rsvpForm');
+  rsvpForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('guestName').value.trim();
+    const email = document.getElementById('guestEmail').value.trim();
+    const guestCount = document.getElementById('guestCount').value.trim();
+    const attendance = (rsvpForm.elements['attendance'].value || '').trim();
+    const starter = document.getElementById('starterChoice').value;
+    const first = document.getElementById('firstChoice').value;
+    const second = document.getElementById('secondChoice').value;
+    const allergies = document.getElementById('allergies').value.trim();
+
+    const subject = encodeURIComponent('Wedding RSVP · Yaaseen & Sophia');
+    let body = '';
+    body += 'Name(s): ' + name + '%0D%0A';
+    body += 'Email: ' + email + '%0D%0A';
+    body += 'Attendance: ' + attendance + '%0D%0A';
+    body += 'Number of guests: ' + guestCount + '%0D%0A%0D%0A';
+    body += 'Starter choice: ' + starter + '%0D%0A';
+    body += 'First course: ' + first + '%0D%0A';
+    body += 'Second course: ' + second + '%0D%0A%0D%0A';
+    body += 'Allergies / dietary notes:%0D%0A' + allergies + '%0D%0A';
+
+    const mailto = 'mailto:YOUR-EMAIL-HERE@example.com?subject=' + subject + '&body=' + body;
+    window.location.href = mailto;
   });
 </script>
 </body>
