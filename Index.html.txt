@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yaaseen & Sophia - Wedding Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --lilac: #c8a2ff;
+      --deep-lilac: #8a63c6;
+      --soft-lilac: #f4ecff;
+      --white: #ffffff;
+      --gold: #d6b36a;
+      --text-dark: #2b2140;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: radial-gradient(circle at top, #fdfbff 0%, #f3ebff 45%, #e1cffc 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .app-shell {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      box-shadow: 0 18px 55px rgba(62, 39, 98, 0.28);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    /* soft floral overlay */
+    .app-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.7) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.65) 0, transparent 55%),
+        radial-gradient(circle at 10% 90%, rgba(255,255,255,0.7) 0, transparent 60%);
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to right, var(--soft-lilac), #ffffff);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .brand {
+      font-family: "Cinzel", "Georgia", serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--deep-lilac);
+    }
+
+    .music-toggle {
+      border-radius: 999px;
+      border: 1px solid rgba(138, 99, 198, 0.3);
+      padding: 6px 12px;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .music-toggle span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--deep-lilac);
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 20px 18px 22px;
+    }
+
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .screen.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ENVELOPE SCREEN */
+    .envelope-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      padding: 25px 8px 10px;
+      text-align: center;
+    }
+
+    .envelope {
+      width: 260px;
+      height: 180px;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .envelope-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f7f0ff, #e0c8ff);
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(77, 47, 122, 0.3);
+      overflow: hidden;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(135deg, #d2b2ff, #b186ff);
+      transform-origin: top center;
+      border-bottom-left-radius: 90px;
+      border-bottom-right-radius: 90px;
+      transform: rotateX(0deg);
+      transition: transform 0.7s ease-in-out;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(-180deg);
+    }
+
+    .envelope-inner-card {
+      position: absolute;
+      inset: 12px;
+      background: #fdfbff;
+      border-radius: 12px;
+      border: 1px solid rgba(214, 179, 106, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .monogram {
+      font-family: "Cinzel", "Georgia", serif;
+      font-size: 26px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--deep-lilac);
+    }
+
+    /* ribbon */
+    .ribbon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 190px;
+      height: 28px;
+      background: linear-gradient(90deg, #b689ff, #d7c1ff);
+      border-radius: 999px;
+      box-shadow: 0 4px 10px rgba(65, 37, 120, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .ribbon::before,
+    .ribbon::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 26px;
+      background: inherit;
+      top: 1px;
+      transform-origin: center;
+      transition: transform 0.6s ease;
+      opacity: 0.92;
+    }
+
+    .ribbon::before {
+      left: -45px;
+      transform: rotate(-8deg);
+    }
+
+    .ribbon::after {
+      right: -45px;
+      transform: rotate(8deg);
+    }
+
+    .envelope.open .ribbon::before {
+      transform: translateX(-30px) rotate(-40deg);
+      opacity: 0;
+    }
+
+    .envelope.open .ribbon::after {
+      transform: translateX(30px) rotate(40deg);
+      opacity: 0;
+    }
+
+    .ribbon-text {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fdfbff;
+      position: relative;
+      z-index: 2;
+    }
+
+    .envelope-caption {
+      font-size: 13px;
+      color: #5b4a7a;
+      line-height: 1.5;
+    }
+
+    .tiny-italian {
+      font-size: 11px;
+      font-style: italic;
+      color: #8c78b0;
+      margin-top: 4px;
+    }
+
+    /* GENERAL CARD CONTENT */
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 12px 24px rgba(74, 46, 119, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0, transparent 70%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0, transparent 70%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 10px;
+      color: #9882c6;
+      margin-bottom: 6px;
+    }
+
+    .names {
+      font-family: "Cinzel", "Georgia", serif;
+      font-size: 24px;
+      text-align: center;
+      color: var(--deep-lilac);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .ampersand {
+      font-size: 22px;
+      color: var(--gold);
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 13px;
+      color: #6c5c8f;
+      margin-bottom: 14px;
+    }
+
+    .divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+
+    .divider-line {
+      height: 1px;
+      width: 45px;
+      background: linear-gradient(to right, transparent, #d5c1ff, transparent);
+    }
+
+    .divider-icon {
+      font-size: 12px;
+      color: var(--gold);
+    }
+
+    .details {
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.6;
+      color: #4a3c6e;
+      margin-bottom: 14px;
+    }
+
+    .details strong {
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11px;
+      border: 1px solid rgba(138, 99, 198, 0.25);
+      background: rgba(244, 236, 255, 0.9);
+      color: #6a538f;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .primary-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      flex: 1;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--deep-lilac), var(--lilac));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(74, 46, 119, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f8f3ff;
+      color: #5b4a7a;
+      border: 1px solid rgba(153, 119, 214, 0.35);
+    }
+
+    .btn-small {
+      flex: unset;
+      font-size: 11px;
+      padding: 7px 11px;
+      margin-top: 10px;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: none;
+    }
+
+    /* DETAILS / ITINERARY */
+    .section-title {
+      font-family: "Cinzel", "Georgia", serif;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--deep-lilac);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      text-align: center;
+      color: #7d6ca5;
+      margin-bottom: 14px;
+    }
+
+    .info-list {
+      list-style: none;
+      font-size: 13px;
+      color: #4a3c6e;
+      margin-bottom: 12px;
+    }
+
+    .info-list li {
+      margin-bottom: 6px;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: var(--deep-lilac);
+    }
+
+    .map-link {
+      display: block;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 8px;
+      color: #6b52a7;
+      text-decoration: underline;
+    }
+
+    /* RSVP & FORM ELEMENTS */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      color: #5a4c7c;
+      margin-bottom: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(138, 99, 198, 0.35);
+      padding: 8px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      background: rgba(250, 247, 255, 0.96);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      font-size: 12px;
+      color: #4a3c6e;
+      margin-top: 4px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .note {
+      font-size: 11px;
+      color: #8b7bb3;
+      margin-top: 4px;
+    }
+
+    .subtle {
+      font-size: 11px;
+      color: #9c8ccc;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* MENU GRID */
+    .menu-group {
+      margin-top: 8px;
+    }
+
+    .menu-group-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--deep-lilac);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .menu-description {
+      font-size: 11px;
+      color: #7c699f;
+      margin-bottom: 6px;
+    }
+
+    .confirmation {
+      text-align: center;
+      padding: 10px 6px;
+      font-size: 13px;
+      color: #4a3c6e;
+    }
+
+    .confirmation strong {
+      color: var(--deep-lilac);
+    }
+
+    .calendar-links {
+      font-size: 11px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .calendar-links a {
+      color: #6b52a7;
+      text-decoration: underline;
+      margin: 0 4px;
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 18px 12px 18px;
+      }
+      .names {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header>
+    <div class="brand">Y &amp; S · Sorrento</div>
+    <button class="music-toggle" id="musicToggle">
+      <span>Music</span> <span id="musicState">Off</span>
+    </button>
+    <!-- Add your own MP3 file in the audio tag below -->
+    <audio id="bgMusic" loop>
+      <!-- Example: <source src="your-music-file.mp3" type="audio/mpeg" /> -->
+    </audio>
+  </header>
+
+  <main>
+    <!-- SCREEN 1: ENVELOPE -->
+    <section id="screen-envelope" class="screen active">
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-base"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-inner-card">
+            <div class="monogram">Y &amp; S</div>
+          </div>
+          <div class="ribbon" id="ribbon">
+            <div class="ribbon-text">Click the ribbon to open</div>
+          </div>
+        </div>
+        <div class="envelope-caption">
+          You are warmly invited to<br />
+          celebrate the wedding of
+          <div class="tiny-italian">Apri il tuo invito · With love</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: MAIN INVITE -->
+    <section id="screen-invite" class="screen">
+      <div class="card">
+        <div class="eyebrow">Wedding Invitation</div>
+        <div class="names">Yaaseen <span class="ampersand">&amp;</span> Sophia</div>
+        <div class="tagline">With love, join us for our special day.</div>
+
+        <div class="divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">✶</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="details">
+          <strong>Wednesday, 27th May 2026</strong><br />
+          4:00 PM – Midnight<br />
+          <strong>Villa Antiche Mura</strong><br />
+          Sorrento, Italy
+        </div>
+
+        <div class="pill-row">
+          <div class="pill">Light Lilac &amp; White Roses</div>
+          <div class="pill">Sorrento · Italia</div>
+        </div>
+
+        <div class="primary-actions">
+          <button class="btn btn-secondary" onclick="showScreen('screen-details')">
+            Itinerary &amp; Details
+          </button>
+          <button class="btn btn-primary" onclick="showScreen('screen-rsvp')">
+            RSVP &amp; Menu
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: DETAILS / ITINERARY -->
+    <section id="screen-details" class="screen">
+      <div class="card">
+        <div class="section-title">Itinerary</div>
+        <div class="section-subtitle">An evening in lilac by the sea at Villa Antiche Mura</div>
+
+        <ul class="info-list">
+          <li><span class="highlight">4:00 PM</span> · Ceremony overlooking the Bay of Naples</li>
+          <li><span class="highlight">5:30 PM</span> · Aperitivo &amp; photographs in the gardens</li>
+          <li><span class="highlight">7:00 PM</span> · Dinner &amp; speeches on the terrace</li>
+          <li><span class="highlight">10:00 PM – Midnight</span> · Dancing &amp; celebrations under the stars</li>
+        </ul>
+
+        <p class="note">
+          Dress code: Elegant summer formal. Shades of lilac and soft neutrals are warmly welcomed.
+        </p>
+
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Villa+Antiche+Mura+Sorrento+Italy" target="_blank">
+          Open Villa Antiche Mura in Maps
+        </a>
+
+        <button class="btn btn-secondary btn-small" onclick="showScreen('screen-invite')">
+          ← Back to Invitation
+        </button>
+        <button class="btn btn-primary btn-small" onclick="showScreen('screen-rsvp')">
+          RSVP &amp; Menu →
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: RSVP -->
+    <section id="screen-rsvp" class="screen">
+      <div class="card">
+        <div class="section-title">RSVP</div>
+        <div class="section-subtitle">Please let us know if you will be joining us in Sorrento.</div>
+
+        <!-- 
+          NOTE: For now this form is handled entirely on the front-end.
+          A developer can connect it to Google Forms by:
+          - Creating a Google Form with matching fields
+          - Replacing this form with the embed code from Google Forms
+        -->
+        <form id="rsvpForm">
+          <div>
+            <label for="guestName">Guest name(s)</label>
+            <input type="text" id="guestName" name="guestName" required />
+          </div>
+
+          <div>
+            <label>Will you be joining us?</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="yes" required />
+                Yes, with love I’ll be there
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="attendance" value="no" />
+                Sadly I cannot attend
+              </label>
+            </div>
+          </div>
+
+          <p class="note">
+            If you are joining us, you’ll be able to select your meal and let us know about any allergies or preferences.
+          </p>
+
+          <div class="primary-actions">
+            <button type="button" class="btn btn-secondary" onclick="showScreen('screen-invite')">
+              ← Back
+            </button>
+            <button type="button" class="btn btn-primary" onclick="handleRsvpNext()">
+              Continue →
+            </button>
+          </div>
+        </form>
+
+        <p class="subtle">
+          Kindly reply at your earliest convenience so we may finalise our arrangements.
+        </p>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: MENU SELECTION -->
+    <section id="screen-menu" class="screen">
+      <div class="card">
+        <div class="section-title">Menu Selection</div>
+        <div class="section-subtitle">
+          Please choose your preferred dishes for our reception dinner.
+        </div>
+
+        <form id="menuForm">
+          <!-- Hidden field to carry name from previous step -->
+          <input type="hidden" id="menuGuestName" name="guestName" />
+
+          <div class="menu-group">
+            <div class="menu-group-title">Starter</div>
+            <div class="menu-description">
+              Please choose one:
+            </div>
+            <select name="starter" required>
+              <option value="">-- Select starter --</option>
+              <option>Traditional Eggplant Parmigiana</option>
+              <option>Trilogy of Bruschetta</option>
+            </select>
+          </div>
+
+          <div class="menu-group">
+            <div class="menu-group-title">First Course</div>
+            <div class="menu-description">Please choose one:</div>
+            <select name="firstCourse" required>
+              <option value="">-- Select first course --</option>
+              <option>Homemade Cannelloni</option>
+              <option>Sorrentine Lemon Risotto</option>
+            </select>
+          </div>
+
+          <div class="menu-group">
+            <div class="menu-group-title">Second Course</div>
+            <div class="menu-description">Please choose one:</div>
+            <select name="secondCourse" required>
+              <option value="">-- Select second course --</option>
+              <option>Roast Beef Italian Style</option>
+              <option>The Sorrentine Escalope (Chicken)</option>
+            </select>
+          </div>
+
+          <div class="menu-group">
+            <div class="menu-group-title">Dessert</div>
+            <div class="menu-description">
+              Dessert will be lemon sorbet and wedding cake for all guests.
+            </div>
+          </div>
+
+          <div class="menu-group">
+            <div class="menu-group-title">Allergies &amp; Preferences</div>
+            <div class="menu-description">
+              Please let us know if you have any allergies, intolerances, or specific dietary preferences.
+            </div>
+            <textarea
+              name="allergies"
+              placeholder="e.g. nut allergy, gluten free, vegetarian, halal, etc."></textarea>
+          </div>
+
+          <div class="primary-actions">
+            <button type="button" class="btn btn-secondary" onclick="showScreen('screen-rsvp')">
+              ← Back
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Submit RSVP
+            </button>
+          </div>
+
+          <p class="subtle">
+            You can contact us directly if your requirements are complex – we’ll do our very best to accommodate you.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: CONFIRMATION -->
+    <section id="screen-confirmation" class="screen">
+      <div class="card">
+        <div class="section-title">Thank You</div>
+        <div class="confirmation" id="confirmationMessage">
+          <!-- Filled dynamically -->
+        </div>
+        <div class="calendar-links">
+          Add to calendar:
+          <!-- You can replace these with real URLs from calendar invite services -->
+          <a href="#" onclick="return false;">Google</a> ·
+          <a href="#" onclick="return false;">Apple</a> ·
+          <a href="#" onclick="return false;">Outlook</a>
+        </div>
+
+        <button class="btn btn-secondary btn-small" onclick="showScreen('screen-invite')">
+          ← Back to Invitation
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const screens = document.querySelectorAll(".screen");
+
+  function showScreen(id) {
+    screens.forEach((s) => {
+      if (s.id === id) {
+        s.classList.add("active");
+      } else {
+        s.classList.remove("active");
+      }
+    });
+  }
+
+  // Envelope & ribbon logic
+  const envelope = document.getElementById("envelope");
+  const ribbon = document.getElementById("ribbon");
+
+  ribbon.addEventListener("click", () => {
+    envelope.classList.add("open");
+    setTimeout(() => {
+      showScreen("screen-invite");
+    }, 750);
+  });
+
+  // RSVP navigation
+  function handleRsvpNext() {
+    const nameInput = document.getElementById("guestName");
+    const attendance = document.querySelector("input[name='attendance']:checked");
+
+    if (!nameInput.value.trim()) {
+      alert("Please enter your name.");
+      return;
+    }
+    if (!attendance) {
+      alert("Please let us know if you are joining us.");
+      return;
+    }
+
+    if (attendance.value === "yes") {
+      // Pass name into menu form
+      document.getElementById("menuGuestName").value = nameInput.value.trim();
+      showScreen("screen-menu");
+    } else {
+      // Not attending – show a simple confirmation
+      const message = `
+        <p>Dear <strong>${nameInput.value.trim()}</strong>,</p>
+        <p>Thank you for letting us know. We are sorry you won’t be able to join us in Sorrento, but we truly appreciate your reply and send our love.</p>
+        <p><strong>With love,</strong><br/>Yaaseen &amp; Sophia</p>
+      `;
+      document.getElementById("confirmationMessage").innerHTML = message;
+      showScreen("screen-confirmation");
+    }
+  }
+
+  // Menu form submission (currently just shows confirmation on-screen)
+  const menuForm = document.getElementById("menuForm");
+  menuForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(menuForm);
+    const name = formData.get("guestName") || "Guest";
+    const starter = formData.get("starter");
+    const firstCourse = formData.get("firstCourse");
+    const secondCourse = formData.get("secondCourse");
+    const allergies = formData.get("allergies") || "No specific allergies or preferences noted.";
+
+    const message = `
+      <p>Dear <strong>${name}</strong>,</p>
+      <p>Grazie mille for confirming your attendance and menu choices.</p>
+      <p><strong>Your selection:</strong><br/>
+      Starter: ${starter}<br/>
+      First course: ${firstCourse}<br/>
+      Second course: ${secondCourse}<br/>
+      Allergies/preferences: ${allergies}</p>
+      <p>We cannot wait to celebrate with you under the Sorrento sky on<br/>
+      <strong>Wednesday 27th May 2026, 4 PM – Midnight</strong> at <strong>Villa Antiche Mura</strong>.</p>
+      <p><strong>With love,</strong><br/>Yaaseen &amp; Sophia</p>
+    `;
+
+    document.getElementById("confirmationMessage").innerHTML = message;
+    showScreen("screen-confirmation");
+
+    // To connect to Google Forms:
+    // 1. Create a Google Form with matching fields
+    // 2. Use its "Responses" sheet for tracking
+    // 3. Replace this custom form and submit handler with the embed HTML from Google Forms
+  });
+
+  // Music toggle
+  const musicToggle = document.getElementById("musicToggle");
+  const musicState = document.getElementById("musicState");
+  const bgMusic = document.getElementById("bgMusic");
+
+  musicToggle.addEventListener("click", () => {
+    if (!bgMusic.src) {
+      alert("Ask your developer to add your music file to the audio tag first.");
+      return;
+    }
+    if (bgMusic.paused) {
+      bgMusic.play();
+      musicState.textContent = "On";
+    } else {
+      bgMusic.pause();
+      musicState.textContent = "Off";
+    }
+  });
+</script>
+</body>
+</html>
